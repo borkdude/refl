@@ -1,7 +1,7 @@
 # refl
 
-A script to clean up reflection configurations produced by the GraalVM
-native-image-agent for Clojure projects.
+An example project and script to clean up reflection configurations produced by
+the GraalVM native-image-agent for Clojure projects.
 
 ## Problem description
 
