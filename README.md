@@ -23,6 +23,12 @@ both JSON files is combined to create a cleaned up version of the reflect
 config, called `reflect-config-cleaned.json`. This config is then used for
 native compilation.
 
+## How to use
+
+This project is intended as a reference example on how you _could_ clean up your
+generated reflection config. Feel free to copy the code and change it to your
+needs.
+
 ## Requirements
 
 Download GraalVM and set `GRAALVM_HOME`. You will also need `clojure` for
@@ -77,6 +83,10 @@ Note that the raw `reflect-config.json` is 527 lines long and contains many
 false positives, mainly due to calls to `Class/forName` in `clojure.lang.RT` and
 some other places. Unfortunately ignoring all calls from `clojure.lang.RT` is
 too coarse, since it also does reflection to create arrays.
+
+The `java.lang.reflect.AccessibleObject` is needed because the
+`clojure.lang.Reflector` reflectively looks up the `canAccess` method on
+`Method` [here](https://github.com/clojure/clojure/blob/b1b88dd25373a86e41310a525a21b497799dbbf2/src/jvm/clojure/lang/Reflector.java#L38). How meta.
 
 ## Tasks
 
