@@ -1,0 +1,95 @@
+# refl
+
+A script to improve reflection configurations produced by the GraalVM native-image-agent.
+
+## Problem description
+
+The reflection configs produced by the GraalVM native-image-agent contain many
+false positives for Clojure programs. This can be alleviated using a
+caller-based filter, like described
+[here](https://github.com/lread/clj-graal-docs#reflection). But excluding all
+calls from `clojure.lang.RT` may be too coarse for some programs. This repo
+offers a finer-grained solution.
+
+## How it works
+
+This project invokes `GRAALVM_HOME/bin/java` on an AOT-ed Clojure program that
+does runtime reflection, twice.  The first time it is invoked a
+`trace-file.json` will be produced. The second time a `reflect-config.json` will
+be produced. Unfortunately the `reflect-config.json` isn't very usable for
+GraalVM native-image yet, since it contains a lot of false positives. Using the
+script `script/gen-reflect-config.clj` the information from both JSON files is
+combined to create a cleaned up version of the reflect config, called
+`reflect-config-cleaned.json`. This config is then used for native compilation.
+
+## Requirements
+
+Download GraalVM and set `GRAALVM_HOME`. You will also need `clojure` for
+Clojure compilation. Scripts are executed with `bb`
+([babashka](https://babashka.org/)).
+
+## The example
+
+This is the example Clojure program that performs reflection at runtime:
+
+``` clojure
+(ns refl.main
+  (:require [clojure.java.io :as io])
+  (:gen-class))
+
+(defn refl-str [s]
+  s)
+
+(defn file [f]
+  (io/file f))
+
+(defn -main [& _]
+  (let [res (refl-str "foo")]
+    (println (.length res)) ;; reflect on string
+    (prn (type (into-array [res res]))) ;; make array of unknown type
+    (println (.getPath (file "."))))) ;; reflect on file
+```
+
+This is the generated reflection config, after executing `bb gen-reflect-config`:
+
+``` json
+[ {
+  "name" : "java.io.File",
+  "allPublicMethods" : true
+}, {
+  "name" : "java.lang.Object[]"
+}, {
+  "name" : "java.lang.String",
+  "allPublicMethods" : true
+}, {
+  "name" : "java.lang.String[]"
+}, {
+  "name" : "java.lang.reflect.AccessibleObject",
+  "methods" : [ {
+    "name" : "canAccess",
+    "parameterTypes" : [ "java.lang.Object" ]
+  } ]
+} ]
+```
+
+Note that the raw `reflect-config.json` is 527 lines long and contains many
+false positives, mainly due to calls to `Class/forName` in `clojure.lang.RT` and
+some other places. Unfortunately ignoring all calls from `clojure.lang.RT` is
+too coarse, since it also does reflection to create arrays.
+
+## Tasks
+
+See `bb tasks`:
+
+```
+The following tasks are available:
+
+compile-clj
+classpath
+gen-reflect-config
+compile-native
+```
+
+## License
+
+[Unlicense](https://unlicense.org/).
