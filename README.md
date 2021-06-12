@@ -57,7 +57,7 @@ This is the example Clojure program that performs reflection at runtime:
     (println (.getPath (file "."))))) ;; reflect on file
 ```
 
-This is the generated reflection config, after executing `bb gen-reflect-config`:
+This is the generated [reflection config](reflect-config-cleaned.json), after executing `bb gen-reflect-config`:
 
 ``` json
 [ {
@@ -79,7 +79,7 @@ This is the generated reflection config, after executing `bb gen-reflect-config`
 } ]
 ```
 
-Note that the raw `reflect-config.json` is 527 lines long and contains many
+Note that the raw [`reflect-config.json`](reflect-config.json) is 527 lines long and contains many
 false positives, mainly due to calls to `Class/forName` in `clojure.lang.RT` and
 some other places. Unfortunately ignoring all calls from `clojure.lang.RT` is
 too coarse, since it also does reflection to create arrays.
