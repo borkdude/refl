@@ -14,13 +14,14 @@ offers a finer-grained solution.
 ## How it works
 
 This project invokes `GRAALVM_HOME/bin/java` on an AOT-ed Clojure program that
-does runtime reflection, twice.  The first time it is invoked a
-`trace-file.json` will be produced. The second time a `reflect-config.json` will
-be produced. Unfortunately the `reflect-config.json` isn't very usable for
-GraalVM native-image yet, since it contains a lot of false positives. Using the
-script `script/gen-reflect-config.clj` the information from both JSON files is
-combined to create a cleaned up version of the reflect config, called
-`reflect-config-cleaned.json`. This config is then used for native compilation.
+does runtime reflection, twice. In both runs the native-image-agent is used. The
+first time it is invoked a `trace-file.json` will be produced. The second time a
+`reflect-config.json` will be produced. Unfortunately the `reflect-config.json`
+isn't very usable for GraalVM native-image yet, since it contains a lot of false
+positives. Using the script `script/gen-reflect-config.clj` the information from
+both JSON files is combined to create a cleaned up version of the reflect
+config, called `reflect-config-cleaned.json`. This config is then used for
+native compilation.
 
 ## Requirements
 
