@@ -27,7 +27,7 @@ native compilation.
 
 This project is intended as a reference example on how you _could_ clean up your
 generated reflection config. Feel free to copy the code and change it to your
-needs. See the [#tasks](tasks) section to see what you can do in this project.
+needs. See the [tasks](#tasks) section to see what you can do in this project.
 
 ## Requirements
 
