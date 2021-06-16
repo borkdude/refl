@@ -8,9 +8,13 @@
 (defn file [f]
   (io/file f))
 
-(defn -main [& _]
+(defn -main [& args]
   (let [res (refl-str "foo")]
-    (println (.length res)) ;; reflect on string
-    (prn (type (into-array [res res]))) ;; make array of unknown type
-    (println (.getPath (file "."))))) ;; reflect on file
+    (case (first args)
+      "string"
+      (do (println (.length res))
+          (prn (type (into-array [res res])));; make array of unknown type) ;; reflect on string
 
+          )
+      "file" (println (.getPath (file ".")))
+      (println "Usage: refl.main string | file"))))
