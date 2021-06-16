@@ -13,7 +13,7 @@
   gen-reflect-config
   {:depends [compile-clj classpath]
    :task
-   (binding [*command-line-args* ["java" "-cp" classpath "refl.main"]]
+   (binding [*command-line-args* ["java" "-cp" classpath "refl.main" "string"]]
      (load-file "script/gen-reflect-config.clj"))}
 
   compile-native {:depends [gen-reflect-config classpath]
