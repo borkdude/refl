@@ -1,6 +1,8 @@
-{:tasks
+{:paths ["script"]
+ :tasks
  {:requires ([babashka.fs :as fs]
-             [clojure.string :as str])
+             [clojure.string :as str]
+             [compile :refer [compile-native-image]])
 
   compile-clj (do
                 (fs/create-dirs "classes")
@@ -14,5 +16,5 @@
    (binding [*command-line-args* ["java" "-cp" classpath "refl.main"]]
      (load-file "script/gen-reflect-config.clj"))}
 
-  compile-native {:depends [gen-reflect-config]
-                  :task (load-file "script/compile.clj")}}}
+  compile-native {:depends [gen-reflect-config classpath]
+                  :task (compile-native-image classpath)}}}
