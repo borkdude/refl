@@ -2,7 +2,9 @@
  :tasks
  {:requires ([babashka.fs :as fs]
              [clojure.string :as str]
-             [compile :refer [compile-native-image]])
+             [compile :refer [compile-native-image]]
+             [reflect-config :refer [generate-trace-files generate-reflect-config simplify-reflect-config]]
+             [cheshire.core :as json])
 
   compile-clj (do
                 (fs/create-dirs "classes")
@@ -10,11 +12,27 @@
 
   classpath (str (str/trim (with-out-str (clojure "-Spath"))) ":classes")
 
-  gen-reflect-config
-  {:depends [compile-clj classpath]
-   :task
-   (binding [*command-line-args* ["java" "-cp" classpath "refl.main" "string"]]
-     (load-file "script/gen-reflect-config.clj"))}
+  invocations [["refl.main" "string"]
+               ["refl.main" "file"]]
 
-  compile-native {:depends [gen-reflect-config classpath]
-                  :task (compile-native-image classpath)}}}
+  trace-files {:depends [classpath invocations]
+               :task (do (fs/create-dirs "nativecfg")
+                         (generate-trace-files classpath invocations))}
+
+  gen-reflect-config {:depends [classpath invocations]
+                      :task (do
+                              (fs/create-dirs "nativecfg")
+                              (generate-reflect-config classpath invocations)
+                              )}
+
+  simplify {:depends [gen-reflect-config trace-files]
+            :task (do
+                    (spit "nativecfg/reflect-config-cleaned.json"
+                          (json/generate-string
+                           (simplify-reflect-config "nativecfg/reflect-config.json" trace-files)
+                           {:pretty true})) )}
+
+  compile-native {:depends [simplify]
+                  :task (compile-native-image classpath)}
+
+  }}

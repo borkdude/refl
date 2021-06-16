@@ -10,7 +10,7 @@
              "--initialize-at-build-time"
              "--no-server"
              "--no-fallback"
-             "-H:ReflectionConfigurationFiles=reflect-config-cleaned.json"
+             "-H:ReflectionConfigurationFiles=nativecfg/reflect-config-cleaned.json"
              "-H:+ReportExceptionStackTraces"
              "refl.main"]
             {:inherit true}))
