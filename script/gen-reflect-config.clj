@@ -1,6 +1,7 @@
 #!/usr/bin/env bb
 
 (require '[babashka.process :refer [process]]
+         '[babashka.fs :as fs]
          '[cheshire.core :as cheshire]
          '[clojure.string :as str])
 
@@ -11,6 +12,30 @@
 
 @(process trace-cmd {:inherit true :extra-env {"JAVA_TOOL_OPTIONS" trace-agent-env}})
 @(process trace-cmd {:inherit true :extra-env {"JAVA_TOOL_OPTIONS" config-agent-env}})
+
+(defn resource-config->cleaned-resource-config
+  [config]
+  (update-in config
+             [:resources :includes]
+             (fn [patterns]
+               (filterv
+                (fn [p]
+                  (let [patternv (get p :pattern)]
+                    ;; Maybe patterns should be taken from the file as well?
+                    ;; To figure it out when the idea crystalizes.
+                    (not (or (str/includes? patternv ".class")
+                             (str/includes? patternv ".clj")))))
+                patterns))))
+
+(defn clean-resource-config!
+  [config-path]
+  (let [resource-config-path (str config-path "resource-config.json")
+        orig-resource-config-path (str config-path "resource-config.orig.json")
+        resource-config (cheshire/parse-string (slurp resource-config-path) true)]
+    (fs/move resource-config-path orig-resource-config-path {:replace-existing true})
+    (spit resource-config-path (cheshire/generate-string
+                                (resource-config->cleaned-resource-config resource-config)
+                                {:pretty true}))))
 
 (def trace-json (cheshire/parse-string (slurp "trace-file.json") true))
 
@@ -71,3 +96,4 @@
 (def cleaned (keep process-1 config-json))
 
 (spit "reflect-config-cleaned.json" (cheshire/generate-string cleaned {:pretty true}))
+(clean-resource-config! "./")
