@@ -9,7 +9,8 @@
 
 @(process [(str (io/file (System/getenv "GRAALVM_HOME") "bin" "native-image"))
            "-cp" classpath
-           "--initialize-at-build-time"
+           "--initialize-at-build-time=clojure,refl,org.httpkit"
+           "--initialize-at-run-time=org.httpkit.client"
            "--no-server"
            "--no-fallback"
            "-H:ReflectionConfigurationFiles=reflect-config-cleaned.json"

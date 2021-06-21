@@ -1,1 +1,2 @@
-{:deps {org.clojure/clojure {:mvn/version "1.11.0-master-SNAPSHOT"}}}
+{:deps {org.clojure/clojure {:mvn/version "1.11.0-master-SNAPSHOT"}
+        http-kit/http-kit {:mvn/version "2.5.3"}}}

@@ -1,5 +1,9 @@
 [
 {
+  "name":"apple.security.AppleProvider",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
   "name":"boolean[]"
 },
 {
@@ -273,6 +277,22 @@
   "name":"clojure.walk__init"
 },
 {
+  "name":"com.sun.crypto.provider.AESCipher$General",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"com.sun.crypto.provider.DHParameters",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"com.sun.crypto.provider.HmacCore$HmacSHA256",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"com.sun.crypto.provider.TlsMasterSecretGenerator",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
   "name":"double[]"
 },
 {
@@ -462,6 +482,24 @@
   "name":"java.nio.file.attribute.FileAttribute"
 },
 {
+  "name":"java.security.AlgorithmParametersSpi"
+},
+{
+  "name":"java.security.KeyStoreSpi"
+},
+{
+  "name":"java.security.MessageDigestSpi"
+},
+{
+  "name":"java.security.SecureRandomParameters"
+},
+{
+  "name":"java.security.interfaces.RSAPrivateKey"
+},
+{
+  "name":"java.security.interfaces.RSAPublicKey"
+},
+{
   "name":"java.sql.Timestamp"
 },
 {
@@ -507,6 +545,12 @@
   "name":"java.util.concurrent.LinkedBlockingQueue"
 },
 {
+  "name":"java.util.concurrent.ThreadPoolExecutor"
+},
+{
+  "name":"java.util.concurrent.TimeUnit"
+},
+{
   "name":"java.util.concurrent.locks.ReentrantLock"
 },
 {
@@ -516,12 +560,200 @@
   "name":"java.util.regex.Pattern"
 },
 {
+  "name":"javax.net.ssl.SNIHostName"
+},
+{
+  "name":"javax.net.ssl.SSLContext"
+},
+{
+  "name":"javax.net.ssl.SSLEngine"
+},
+{
+  "name":"javax.net.ssl.SSLParameters"
+},
+{
+  "name":"javax.security.auth.x500.X500Principal",
+  "fields":[{"name":"thisX500Name"}],
+  "methods":[{"name":"<init>","parameterTypes":["sun.security.x509.X500Name"] }]
+},
+{
   "name":"long[]"
+},
+{
+  "name":"org.httpkit.HttpMethod"
+},
+{
+  "name":"org.httpkit.HttpUtils"
+},
+{
+  "name":"org.httpkit.PrefixThreadFactory"
+},
+{
+  "name":"org.httpkit.client.ClientSslEngineFactory"
+},
+{
+  "name":"org.httpkit.client.HttpClient"
+},
+{
+  "name":"org.httpkit.client.HttpClient$AddressFinder"
+},
+{
+  "name":"org.httpkit.client.HttpClient$SSLEngineURIConfigurer"
+},
+{
+  "name":"org.httpkit.client.IFilter"
+},
+{
+  "name":"org.httpkit.client.IResponseHandler"
+},
+{
+  "name":"org.httpkit.client.MultipartEntity"
+},
+{
+  "name":"org.httpkit.client.RequestConfig"
+},
+{
+  "name":"org.httpkit.client.RespListener"
+},
+{
+  "name":"org.httpkit.client__init"
+},
+{
+  "name":"org.httpkit.encode__init"
+},
+{
+  "name":"org.httpkit.logger.ContextLogger"
+},
+{
+  "name":"org.httpkit.logger.EventLogger"
+},
+{
+  "name":"org.httpkit.logger.EventNames"
+},
+{
+  "name":"org.httpkit.sni_client__init"
 },
 {
   "name":"refl.main__init"
 },
 {
   "name":"short[]"
+},
+{
+  "name":"sun.security.pkcs.SignerInfo[]"
+},
+{
+  "name":"sun.security.provider.DSA$SHA224withDSA",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.provider.DSA$SHA256withDSA",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.provider.JavaKeyStore$DualFormatJKS",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.provider.JavaKeyStore$JKS",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.provider.NativePRNG",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.provider.SHA",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.provider.SHA2$SHA224",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.provider.SHA2$SHA256",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.provider.SHA5$SHA384",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.provider.SHA5$SHA512",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.provider.X509Factory",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.rsa.RSAKeyFactory$Legacy",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.rsa.RSAPSSSignature",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.rsa.RSASignature$SHA224withRSA",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.ssl.SSLContextImpl$TLSContext",
+  "methods":[{"name":"<init>","parameterTypes":[] }]
+},
+{
+  "name":"sun.security.util.ObjectIdentifier"
+},
+{
+  "name":"sun.security.x509.AuthorityInfoAccessExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
+{
+  "name":"sun.security.x509.AuthorityKeyIdentifierExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
+{
+  "name":"sun.security.x509.BasicConstraintsExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
+{
+  "name":"sun.security.x509.CRLDistributionPointsExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
+{
+  "name":"sun.security.x509.CertificateExtensions"
+},
+{
+  "name":"sun.security.x509.CertificatePoliciesExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
+{
+  "name":"sun.security.x509.ExtendedKeyUsageExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
+{
+  "name":"sun.security.x509.IssuerAlternativeNameExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
+{
+  "name":"sun.security.x509.KeyUsageExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
+{
+  "name":"sun.security.x509.NetscapeCertTypeExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
+{
+  "name":"sun.security.x509.PrivateKeyUsageExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
+{
+  "name":"sun.security.x509.SubjectAlternativeNameExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
+},
+{
+  "name":"sun.security.x509.SubjectKeyIdentifierExtension",
+  "methods":[{"name":"<init>","parameterTypes":["java.lang.Boolean","java.lang.Object"] }]
 }
 ]
