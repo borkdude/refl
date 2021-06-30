@@ -1,0 +1,9 @@
+/.cpcache
+/classes
+/jni-config.json
+/proxy-config.json
+/refl.main
+/refl.main.build_artifacts.txt
+/resource-config.json
+/serialization-config.json
+/trace-file.json
